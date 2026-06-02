@@ -1,19 +1,36 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
 # cria a aplicação flask
 app = Flask(__name__)
 
-# rota principal
 @app.route('/')
-def pagina_inicial():
-    texto_para_html = "Esta mensagem veio do Python!"
-    minha_lista = ["Maça", "Banana", "Mimosa", "Laranja"]
+def Exibir_formulario():
 
     return render_template(
         'index.html',
-        mensagem=texto_para_html,
-        minha_lista=minha_lista
-    )
+        mensagem ='Formulario.html',
+        resultado = ' Aguardando o envio...')
+def Processar_formulario():
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    nome = request.form['nome']
+    idade = request.form['idade']
+    curso = request.form['curso']
+
+    if not nome or not idade or not curso:
+        mensagem_resultado = "Erro: todos os campos sao obrigatorio"
+        return mensagem_resultado
+
+    else:
+     idade_int = int(idade)
+     mensagem_base = f"ola {nome}, voce tem {idade_int} anos e esta no curso de {curso}"
+
+    if  idade_int < 18:
+        mensagem_resultado = "Você é menor de idade"
+
+    elif idade_int > 18 and idade_int < 60:
+        mensagem_idade = "Você é adulto"
+
+    else:
+         mensagem_idade =  "Voce é experiente. "
+
+    if curso == "python":
+        mensagem_curso =  "otima escolha, você é versatil"

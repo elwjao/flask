@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>  flask é susse </title>
+    <title>Formulario de Cadastro </title>
 </head>
 <body>
- <h1> Olá, Flask!</h1>
-<p>Este HTML foi carregado com o Flask</p>
-<!-- vamos exibir uma variavel vindo do python--->
- <h2> {{ Mensagem }} </h2>
- <ul>
- {% for item in lista_exemplo %}
-     <li> {{ item }}</li>
-     {% endfor %}
- </ul>
+<div class='container'>
+ <h1>Formulario de cadastro</h1>
+  <p>Preencha os dados abaixo</p>
+    <form action="/processar" method="POST">
+
+        <div class="campos " >
+            <label for ="none">Nome completo </label>
+            <input type="text" id="nome" name="nome" required>
+            <div class="campo ">
+                <label for ="idade">idade </label>
+                <input type="number" id="idade" name="idade" required>
+                <div class="campo">
+                    <label for="Curso">Curso:</label>
+                    <select name="Curso" id="Curso">
+                        <option value=" "python></option>
+                        <option value=" "Flask></option>
+                        <option value=" "HTML/CSS> </option>
+
+                    </select>
+                <button type="Submit">Enviar Dados</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="Resultado">
+    <h3>Resultado do Processamento</h3>
+    <-- isso é um comentario jinja2 ( template do flask)
+    0{{  resultado }} sera substituido pelo texto que o python enviar
+    
+</div>
+
+
 </body>
 </html>
